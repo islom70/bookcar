@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+{% endblock %}
+
+{% block content %}
+  <button>
+    <a class="link" href="{% url 'home' %}">Home Page</a>
+  </button>
+  <div class="nft">
+    <div class='main'>
+      <img class='tokenImage' src="{{ car.photo.url }}" alt="{{ car.name }}"/>
+      <h2>{{ car.name }}</h2>
+      <p class='description'>{{ car.description }}</p>
+      <div class='tokenInfo'>
+        <div class="price">
+          <ins>◘</ins>
+          <p>{{ car.price }}$</p>
+        </div>
+        <div class="duration">
+          <ins>◷</ins>
+          <p>{{ car.year }}</p>
+        </div>
+      </div>
+      <hr />
+      <form method="post" action="{% url 'detail' car.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Book this Car</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

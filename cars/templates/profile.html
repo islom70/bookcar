@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>My Bookings</h1>
+<a href="{% url 'home' %}">Home Page</a>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.car.name }} - Booked By:  {{ booking.user }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
